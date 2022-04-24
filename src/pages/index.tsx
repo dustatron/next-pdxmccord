@@ -41,8 +41,15 @@ export default function Home() {
         </>
       )}
       <div>
-        <Link href="/test">
-          <a> test</a>
+        <Link href="/create">
+          <a>
+            <button>Add Video</button>
+          </a>
+        </Link>
+        <Link href="/drafts">
+          <a>
+            <button>Drafts</button>
+          </a>
         </Link>
       </div>
       <footer className={styles.footer}>
