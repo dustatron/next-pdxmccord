@@ -52,6 +52,7 @@ model User {
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   accounts      Account[]
   sessions      Session[]
+  video         Video[]
 
   @@map(name: "users")
 }
@@ -63,4 +64,15 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+model Video {
+  id        String  @id @default(cuid())
+  title     String
+  link      String
+  image     String
+  content   String?
+  published Boolean @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
 }
