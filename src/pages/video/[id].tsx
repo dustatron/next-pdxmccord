@@ -1,7 +1,6 @@
 import React from "react"
 import { GetServerSideProps } from "next"
 import prisma from "../../lib/prisma"
-import { VideoProps } from "../drafts"
 import Router from "next/router"
 import { useSession } from "next-auth/react"
 

@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next"
 import { useSession, getSession } from "next-auth/react"
 import prisma from "../lib/prisma"
 import Router from "next/router"
+import Link from "next/link"
 
 export type VideoProps = {
   id: string
@@ -70,8 +71,9 @@ const Drafts: React.FC<Props> = (props) => {
         <main>
           {props.drafts.map((video) => (
             <div key={video.id} className="post">
-              {video.title}
-              <button onClick={() => handlePublish(video.id)}> Publish </button>
+              <Link href={`/video/${video.id}`}>
+                <a>{video.title}</a>
+              </Link>
             </div>
           ))}
         </main>

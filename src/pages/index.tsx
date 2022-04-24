@@ -2,9 +2,31 @@ import Head from "next/head"
 import Image from "next/image"
 import styles from "../styles/Home.module.css"
 import { useSession, signIn, signOut } from "next-auth/react"
+import { GetServerSideProps } from "next"
+import prisma from "../lib/prisma"
 import Link from "next/link"
+import { VideoProps } from "./drafts"
 
-export default function Home() {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const video = await prisma.video.findMany({
+    where: {
+      published: true,
+    },
+    include: {
+      author: {
+        select: { name: true, email: true },
+      },
+    },
+  })
+  return {
+    props: { video },
+  }
+}
+interface Props {
+  video: VideoProps[]
+}
+
+export default function Home(props: Props) {
   const { data: session } = useSession()
   console.log("session", session)
 
@@ -51,6 +73,16 @@ export default function Home() {
             <button>Drafts</button>
           </a>
         </Link>
+      </div>
+      <div>
+        <ol>
+          {props.video.map((vid) => (
+            <li key={vid.id}>
+              <p>{vid.title}</p>
+              <p>{vid.author.name}</p>
+            </li>
+          ))}
+        </ol>
       </div>
       <footer className={styles.footer}>
         <a
