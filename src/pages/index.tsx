@@ -2,9 +2,11 @@ import Head from "next/head"
 import Image from "next/image"
 import styles from "../styles/Home.module.css"
 import { useSession, signIn, signOut } from "next-auth/react"
+import Link from "next/link"
 
 export default function Home() {
   const { data: session } = useSession()
+  console.log("session", session)
 
   return (
     <div className={styles.container}>
@@ -17,7 +19,17 @@ export default function Home() {
       <h1>PDX McCord</h1>
       {session && (
         <>
-          Signed in as {session.user.email} <br />
+          <div>
+            <Image
+              src={session.user.image}
+              alt="profile picture"
+              width={100}
+              height={100}
+            />
+          </div>
+          <div>Signed in as {session.user.name}</div>
+          <div>{session.user.email}</div>
+          <br />
           <button onClick={() => signOut()}>Sign out</button>
         </>
       )}
@@ -28,6 +40,11 @@ export default function Home() {
           <button onClick={() => signIn()}>Sign in</button>
         </>
       )}
+      <div>
+        <Link href="/test">
+          <a> test</a>
+        </Link>
+      </div>
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
