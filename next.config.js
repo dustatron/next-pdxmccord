@@ -1,6 +1,6 @@
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["avatars.githubusercontent.com", "img.youtube.com"],
   },
 }

@@ -4,19 +4,7 @@ import { useSession, getSession } from "next-auth/react"
 import prisma from "../lib/prisma"
 import Router from "next/router"
 import Link from "next/link"
-
-export type VideoProps = {
-  id: string
-  title: string
-  image: string
-  link: string
-  author: {
-    name: string
-    email: string
-  } | null
-  content: string
-  published: boolean
-}
+import { VideoProps } from "../lib/Types"
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req })
