@@ -50,6 +50,7 @@ model User {
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  isAdmin       Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
   video         Video[]

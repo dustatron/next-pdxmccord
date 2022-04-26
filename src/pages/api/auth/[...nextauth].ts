@@ -11,6 +11,12 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  callbacks: {
+    // @ts-ignore
+    async session({ session, user, token }) {
+      return { ...session, user }
+    },
+  },
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
 })

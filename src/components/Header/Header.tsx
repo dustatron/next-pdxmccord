@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react"
 import NextLink from "next/link"
+import { Prisma } from "@prisma/client"
 import {
   Box,
   Flex,
@@ -11,7 +12,6 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useDisclosure,
   useColorModeValue,
   Stack,
   useColorMode,
@@ -20,24 +20,7 @@ import {
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import { useSession, signIn, signOut } from "next-auth/react"
 
-type Props = {}
-
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"/"}
-  >
-    {children}
-  </Link>
-)
-
-const Header = (props: Props) => {
+const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const { data: session } = useSession()
   // const { isOpen, onOpen, onClose } = useDisclosure()
@@ -79,16 +62,20 @@ const Header = (props: Props) => {
                     </Center>
                     <br />
                     <MenuDivider />
-                    <NextLink href="/drafts">
-                      <a>
-                        <MenuItem>Your Drafts</MenuItem>
-                      </a>
-                    </NextLink>
-                    <NextLink href="/create">
-                      <a>
-                        <MenuItem>Add Video</MenuItem>
-                      </a>
-                    </NextLink>
+                    {session.user.isAdmin && (
+                      <>
+                        <NextLink href="/drafts">
+                          <a>
+                            <MenuItem>Your Drafts</MenuItem>
+                          </a>
+                        </NextLink>
+                        <NextLink href="/create">
+                          <a>
+                            <MenuItem>Add Video</MenuItem>
+                          </a>
+                        </NextLink>
+                      </>
+                    )}
                     <MenuItem onClick={() => signOut()}>Logout</MenuItem>
                   </MenuList>
                 </Menu>

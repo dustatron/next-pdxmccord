@@ -43,7 +43,11 @@ export default function Home(props: Props) {
 
   return (
     <Stack marginTop="5">
-      <Box>{!isSSR && <VideoPlayer videoData={currentVideo} />}</Box>
+      <Box>
+        {!isSSR && props.video.length > 0 && (
+          <VideoPlayer videoData={currentVideo} />
+        )}
+      </Box>
 
       <Flex>
         {props?.video?.map((vid) => (
