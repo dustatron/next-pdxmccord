@@ -36,6 +36,16 @@ const Header = () => {
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
+              <NextLink href="/">
+                <a>
+                  <Button>Videos</Button>
+                </a>
+              </NextLink>
+              <NextLink href="/links">
+                <a>
+                  <Button>Links</Button>
+                </a>
+              </NextLink>
               <Button onClick={toggleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>

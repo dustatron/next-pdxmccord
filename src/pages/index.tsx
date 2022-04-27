@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 import { useSession } from "next-auth/react"
-import { GetServerSideProps } from "next"
+import { GetServerSideProps, GetStaticProps } from "next"
 import prisma from "../lib/prisma"
 import { VideoProps } from "../lib/Types"
 import VideoPlayer from "../components/VideoPlayer"
-import { Flex, Box, Stack } from "@chakra-ui/react"
-import Video from "./video/[id]"
+import { Flex, Box, Stack, Button } from "@chakra-ui/react"
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const video = await prisma.video.findMany({
@@ -26,7 +25,7 @@ interface Props {
   video: VideoProps[]
 }
 
-export default function Home(props: Props) {
+export default function Home(props) {
   const { data: session } = useSession()
   const [currentVideo, setCurrentVideo] = useState<VideoProps>()
   const [isSSR, setIsSSR] = useState(true)
@@ -49,19 +48,17 @@ export default function Home(props: Props) {
         )}
       </Box>
 
-      <Flex>
+      <Flex gap="2">
         {props?.video?.map((vid) => (
-          <Box
+          <Button
             key={vid.id}
-            border={"1px"}
-            margin={3}
-            padding="3"
-            borderColor={"blackAlpha.300"}
-            borderRadius="5px"
+            padding="5"
+            width={60}
             onClick={() => setCurrentVideo(vid)}
+            isActive={currentVideo?.id === vid.id}
           >
             {vid.title}
-          </Box>
+          </Button>
         ))}
       </Flex>
     </Stack>

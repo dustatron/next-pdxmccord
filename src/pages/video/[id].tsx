@@ -28,15 +28,8 @@ async function publishVideo(id: string): Promise<void> {
   await Router.push("/")
 }
 
-async function deleteVideo(id: string): Promise<void> {
-  await fetch(`/api/video/${id}`, {
-    method: "DELETE",
-  })
-  Router.push("/")
-}
-
 const Video = (props) => {
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
   const [isSSR, setIsSSR] = useState(true)
 
   useEffect(() => {
@@ -57,8 +50,11 @@ const Video = (props) => {
       {!props.published && userHasValidSession && postBelongsToUser && (
         <Button onClick={() => publishVideo(props.id)}>Publish</Button>
       )}
-      {userHasValidSession && postBelongsToUser && (
-        <Button onClick={() => deleteVideo(props.id)}>Delete</Button>
+
+      {session?.user?.isAdmin && (
+        <Button onClick={() => Router.push(`/editVideo/${props.id}`)}>
+          Edit
+        </Button>
       )}
     </Box>
   )

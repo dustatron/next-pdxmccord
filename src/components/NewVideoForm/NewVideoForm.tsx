@@ -1,15 +1,6 @@
 import React, { useState } from "react"
 import Router from "next/router"
-import {
-  Flex,
-  FormControl,
-  FormLabel,
-  Input,
-  Textarea,
-  Button,
-  Spacer,
-  Stack,
-} from "@chakra-ui/react"
+import VideoForm from "../VideoForm"
 type Props = {}
 
 const NewVideoForm = (props: Props) => {
@@ -33,57 +24,17 @@ const NewVideoForm = (props: Props) => {
     }
   }
   return (
-    <form onSubmit={submitData}>
-      <Stack spacing={6}>
-        <FormControl>
-          <FormLabel>Title</FormLabel>
-          <Input
-            autoFocus
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
-            type="text"
-            value={title}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Link</FormLabel>
-          <Input
-            autoFocus
-            onChange={(e) => setLink(e.target.value)}
-            placeholder="link"
-            type="text"
-            value={link}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Image Link</FormLabel>
-          <Input
-            autoFocus
-            onChange={(e) => setImage(e.target.value)}
-            placeholder="Image"
-            type="text"
-            value={image}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Descriptions</FormLabel>
-          <Textarea
-            cols={50}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Content"
-            rows={8}
-            value={content}
-          />
-        </FormControl>
-        <Flex>
-          <Button onClick={() => Router.push("/")}> Cancel </Button>
-          <Spacer />
-          <Button colorScheme="blue" disabled={!link && !title} type="submit">
-            Add Video
-          </Button>
-        </Flex>
-      </Stack>
-    </form>
+    <VideoForm
+      content={content}
+      image={image}
+      link={link}
+      title={title}
+      setContent={setContent}
+      setImage={setImage}
+      setLink={setLink}
+      setTitle={setTitle}
+      submitData={submitData}
+    />
   )
 }
 
