@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React, { useEffect } from "react"
 import NextLink from "next/link"
 import { Prisma } from "@prisma/client"
 import {
@@ -24,6 +24,14 @@ const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const { data: session } = useSession()
   // const { isOpen, onOpen, onClose } = useDisclosure()
+  useEffect(() => {
+    const color = window.localStorage.getItem("chakra-ui-color-mode")
+    if (color === "dark") {
+      toggleColorMode()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
