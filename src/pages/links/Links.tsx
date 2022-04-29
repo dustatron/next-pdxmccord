@@ -25,6 +25,16 @@ const Links = () => {
       title: "Word Cracker",
       link: "https://word-cracker.vercel.app/",
     },
+    {
+      id: 6,
+      title: "Master Mine Close",
+      link: "https://gallant-dijkstra-379443.netlify.app/",
+    },
+    {
+      id: 7,
+      title: "Treasure Sweep",
+      link: "https://treasuresweepgame.herokuapp.com/",
+    },
   ]
 
   return (
