@@ -41,17 +41,21 @@ const Header = () => {
             </NextLink>
           </Box>
 
-          <Flex alignItems={"center"}>
-            <Stack direction={"row"} spacing={7}>
-              <NextLink href="/">
-                <a>Videos</a>
-              </NextLink>
-              <NextLink href="/links">
-                <a>Links</a>
-              </NextLink>
+          <Flex alignItems={"center"} justifyContent={"space-between"}>
+            <Stack direction={"row"} spacing={7} alignItems="center">
               <Button onClick={toggleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
+              <Box alignContent="center">
+                <NextLink href="/">
+                  <a>Videos</a>
+                </NextLink>
+              </Box>
+              <Box>
+                <NextLink href="/links">
+                  <a>Links</a>
+                </NextLink>
+              </Box>
               {!session && <Button onClick={() => signIn()}>Sign In</Button>}
               {session && (
                 <Menu>

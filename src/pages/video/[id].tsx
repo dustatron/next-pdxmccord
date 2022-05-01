@@ -60,7 +60,7 @@ const Video = (props) => {
         {title}
       </Text>
       <p>By {props?.author?.name || "Unknown author"}</p>
-      {!isSSR && <ReactPlayer url={props.link} />}
+      {!isSSR && <ReactPlayer url={props.link} width="100%" />}
       {!props.published && userHasValidSession && postBelongsToUser && (
         <Button onClick={() => publishVideo(props.id)}>Publish</Button>
       )}
