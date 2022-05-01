@@ -40,16 +40,20 @@ export default function Home(props) {
     }
   }, [session, props.video, currentVideo])
 
-  return (
-    <Stack marginTop="5">
-      <Box>
-        {!isSSR && props.video.length > 0 && (
-          <VideoPlayer videoData={currentVideo} />
-        )}
-      </Box>
+  const videoList = props.video.sort((a, b) => a.sortOrder - b.sortOrder)
 
-      <Flex gap="2">
-        {props?.video?.map((vid) => (
+  return (
+    <Stack>
+      {!isSSR && props.video.length > 0 && (
+        <VideoPlayer videoData={currentVideo} />
+      )}
+      <Flex
+        gap="2"
+        flexWrap={"wrap"}
+        alignItems="center"
+        justifyContent="center"
+      >
+        {videoList?.map((vid) => (
           <Button
             key={vid.id}
             padding="5"

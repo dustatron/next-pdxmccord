@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react"
 import { VideoProps } from "../../lib/Types"
 import Router from "next/router"
 import ReactPlayer from "react-player"
-import { Button, Box, Spacer, Flex } from "@chakra-ui/react"
+import { Button, Box, Spacer, Flex, Center } from "@chakra-ui/react"
 type Props = {
   videoData: VideoProps
+  hideDetailBtn?: boolean
 }
 
-const VideoPlayer = ({ videoData }: Props) => {
+const VideoPlayer = ({ videoData, hideDetailBtn }: Props) => {
   const { author, content, id, image, link, published, title } = videoData
   const [isSSR, setIsSSR] = useState(true)
 
@@ -16,24 +17,27 @@ const VideoPlayer = ({ videoData }: Props) => {
   }, [])
 
   return (
-    <Box
-      border="1px"
+    <Flex
       borderRadius={4}
-      borderColor={"gray.400"}
-      background="gray.200"
+      flexWrap="wrap"
+      justifyContent="center"
+      alignItems="center"
+      height="33rem"
     >
-      {!isSSR && <ReactPlayer url={link} width={"100%"} height="500px" />}
-      <Flex>
-        <Spacer />
+      {!isSSR && (
+        <Center width="100%" background={"black"} height="90%">
+          <ReactPlayer url={link} height="100%" width="80%" />
+        </Center>
+      )}
+      {!hideDetailBtn && (
         <Button
-          marginTop={3}
-          colorScheme="blackAlpha"
+          colorScheme="facebook"
           onClick={() => Router.push(`/video/${id}`)}
         >
-          More Details
+          Movie Details
         </Button>
-      </Flex>
-    </Box>
+      )}
+    </Flex>
   )
 }
 

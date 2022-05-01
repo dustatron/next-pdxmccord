@@ -5,7 +5,6 @@ import {
   Box,
   Flex,
   Avatar,
-  Link,
   Button,
   Menu,
   MenuButton,
@@ -45,14 +44,10 @@ const Header = () => {
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
               <NextLink href="/">
-                <a>
-                  <Button>Videos</Button>
-                </a>
+                <a>Videos</a>
               </NextLink>
               <NextLink href="/links">
-                <a>
-                  <Button>Links</Button>
-                </a>
+                <a>Links</a>
               </NextLink>
               <Button onClick={toggleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}

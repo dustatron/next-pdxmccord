@@ -76,4 +76,5 @@ model Video {
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
+  sortOrder Int @default(autoincrement())
 }

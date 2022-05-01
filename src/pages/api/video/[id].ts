@@ -9,7 +9,7 @@ export default async function handle(req, res) {
     })
     res.json(post)
   } else if (req.method === "PUT") {
-    const { title, content, image, link, published } = req.body
+    const { title, content, image, link, published, sortOrder } = req.body
     const videoId = req.query.id
     const video = await prisma.video.update({
       where: { id: videoId },
@@ -19,6 +19,7 @@ export default async function handle(req, res) {
         image,
         link,
         published,
+        sortOrder,
       },
     })
     res.json(video)

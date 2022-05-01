@@ -33,6 +33,7 @@ type Props = {
   link: string
   published: boolean
   title: string
+  sortOrder: string
 }
 
 const EditVideo = (props: Props) => {
@@ -41,10 +42,18 @@ const EditVideo = (props: Props) => {
   const [image, setImage] = useState(props.image)
   const [content, setContent] = useState(props.content)
   const [published, setPublished] = useState(props.published)
+  const [sort, setSort] = useState(props.sortOrder)
 
   async function submitEdit(e): Promise<void> {
     e.preventDefault()
-    const body = { title, link, image, content, published }
+    const body = {
+      title,
+      link,
+      image,
+      content,
+      published,
+      sortOrder: Number(sort),
+    }
     await fetch(`/api/video/${props.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -86,6 +95,8 @@ const EditVideo = (props: Props) => {
         setPublished={setPublished}
         deleteVideo={deleteVideo}
         videoId={props.id}
+        sort={sort}
+        setSort={setSort}
       />
     </>
   )

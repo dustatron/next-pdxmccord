@@ -10,6 +10,11 @@ import {
   Spacer,
   Stack,
   Checkbox,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
 } from "@chakra-ui/react"
 
 type Props = {
@@ -27,6 +32,8 @@ type Props = {
   setPublished?: (boolean) => void
   deleteVideo?: (id: string) => void
   videoId?: string
+  setSort?: (num: string) => void
+  sort?
 }
 
 const VideoForm = ({
@@ -44,6 +51,8 @@ const VideoForm = ({
   setPublished,
   deleteVideo,
   videoId,
+  setSort,
+  sort,
 }: Props) => {
   return (
     <form onSubmit={submitData}>
@@ -87,6 +96,22 @@ const VideoForm = ({
             rows={8}
             value={content}
           />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Sort Order</FormLabel>
+          <NumberInput
+            size="xs"
+            maxW={100}
+            value={sort}
+            min={1}
+            onChange={(value) => setSort(value)}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
         </FormControl>
         {isEdit && (
           <FormControl>
