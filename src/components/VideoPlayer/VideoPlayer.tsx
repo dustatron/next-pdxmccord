@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react"
 import { VideoProps } from "../../lib/Types"
 import Router from "next/router"
 import ReactPlayer from "react-player"
-import { Button, Box, Spacer, Flex, Center } from "@chakra-ui/react"
+import { Button, Flex, Center } from "@chakra-ui/react"
+import { SettingsIcon } from "@chakra-ui/icons"
 type Props = {
   videoData: VideoProps
   hideDetailBtn?: boolean
@@ -34,7 +35,7 @@ const VideoPlayer = ({ videoData, hideDetailBtn }: Props) => {
           colorScheme="facebook"
           onClick={() => Router.push(`/video/${id}`)}
         >
-          Movie Details
+          <SettingsIcon w="6" h="6" />
         </Button>
       )}
     </Flex>
