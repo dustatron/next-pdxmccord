@@ -46,7 +46,7 @@ const HouseLinks = (props: Props) => {
   const IMG_SIZE = "150"
   return (
     <Box>
-      <Text as="h2" fontWeight={"black"}>
+      <Text as="h2" fontWeight={"black"} fontSize="2xl">
         House Links
       </Text>
       <HStack spacing={6}>

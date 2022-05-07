@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import NextLink from "next/link"
-import { Prisma } from "@prisma/client"
 import {
   Box,
   Flex,
@@ -15,6 +14,7 @@ import {
   Stack,
   useColorMode,
   Center,
+  Text,
 } from "@chakra-ui/react"
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import { useSession, signIn, signOut } from "next-auth/react"
@@ -22,7 +22,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const { data: session } = useSession()
-  // const { isOpen, onOpen, onClose } = useDisclosure()
+
   useEffect(() => {
     const color = window.localStorage.getItem("chakra-ui-color-mode")
     if (color === "dark") {
@@ -37,7 +37,9 @@ const Header = () => {
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
             <NextLink href="/">
-              <a>PDX McCord</a>
+              <a>
+                <Text fontWeight="bold">PDX McCORD</Text>
+              </a>
             </NextLink>
           </Box>
 

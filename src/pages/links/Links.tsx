@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react"
 import React from "react"
-import { Box, Text, HStack, Button, Stack } from "@chakra-ui/react"
+import { Box, Text, VStack, Button, Stack } from "@chakra-ui/react"
 import HouseLinks from "../../components/HouseLinks"
 
 interface Link {
@@ -41,16 +41,18 @@ const Links = () => {
     <Stack padding={10} spacing="10">
       {session?.user?.isAdmin && <HouseLinks />}
       <Box>
-        <Text as="h2" fontWeight={"black"}>
+        <Text as="h2" fontWeight={"black"} fontSize="2xl">
           Games
         </Text>
-        <HStack>
+        <VStack align="stretch" spacing={5}>
           {games.map((game) => (
             <a key={game.id} href={game.link} target="_blank" rel="noreferrer">
-              <Button>{game.title}</Button>
+              <Box width="100%">
+                <Button>{game.title}</Button>
+              </Box>
             </a>
           ))}
-        </HStack>
+        </VStack>
       </Box>
     </Stack>
   )
