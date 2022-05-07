@@ -54,8 +54,8 @@ const Header = () => {
                 </NextLink>
               </Box>
               <Box>
-                <NextLink href="/links">
-                  <a>Links</a>
+                <NextLink href="/projects">
+                  <a>Projects</a>
                 </NextLink>
               </Box>
               {!session && <Button onClick={() => signIn()}>Sign In</Button>}

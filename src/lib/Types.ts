@@ -9,4 +9,11 @@ export type VideoProps = {
   } | null
   content: string
   published: boolean
+  sortOrder: number
+}
+
+export interface LinkType {
+  id: string | number
+  title: string
+  link: string
 }

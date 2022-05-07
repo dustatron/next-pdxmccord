@@ -10,7 +10,7 @@ interface Link {
   link: string
   img: string
 }
-const HouseLinks = (props: Props) => {
+const AdminLinks = (props: Props) => {
   const links: Link[] = [
     {
       id: 1,
@@ -39,39 +39,35 @@ const HouseLinks = (props: Props) => {
     {
       id: 5,
       link: "https://192.168.6.200:14860/gui/",
-      title: "Resilio Sync",
+      title: "Resilio",
       img: "/resilio.png",
     },
   ]
-  const IMG_SIZE = "150"
+  const IMG_SIZE = "30"
   return (
-    <Box>
-      <Text as="h2" fontWeight={"black"} fontSize="2xl">
-        House Links
-      </Text>
-      <HStack spacing={6}>
-        {links.map((link) => (
-          <a key={link.id} href={link.link} target="_blank" rel="noreferrer">
-            <VStack
-              alignItems="center"
-              border="1px"
-              borderColor="gray.600"
-              borderRadius={4}
-              padding="1"
-            >
-              <Image
-                src={link.img}
-                alt={link.title}
-                width={IMG_SIZE}
-                height={IMG_SIZE}
-              />
-              <Text fontWeight="bold">{link.title}</Text>
-            </VStack>
-          </a>
-        ))}
-      </HStack>
-    </Box>
+    <HStack spacing={3} justifyContent="center" padding="1">
+      {links.map((link) => (
+        <a key={link.id} href={link.link} target="_blank" rel="noreferrer">
+          <HStack
+            alignItems="center"
+            justifyContent="center"
+            borderRadius={5}
+            padding="2"
+            background="gray.200"
+            width="8rem"
+          >
+            <Image
+              src={link.img}
+              alt={link.title}
+              width={IMG_SIZE}
+              height={IMG_SIZE}
+            />
+            <Text fontWeight="bold">{link.title}</Text>
+          </HStack>
+        </a>
+      ))}
+    </HStack>
   )
 }
 
-export default HouseLinks
+export default AdminLinks
