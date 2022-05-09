@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react"
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 import { useSession, signIn, signOut } from "next-auth/react"
+import AdminLinks from "../AdminLinks"
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -103,6 +104,7 @@ const Header = () => {
           </Flex>
         </Flex>
       </Box>
+      {session?.user?.isAdmin && <AdminLinks />}
     </>
   )
 }

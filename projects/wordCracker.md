@@ -1,14 +1,14 @@
 ---
-title: "Fast Quiz"
+title: "Word Cracker"
 metaTitle: "A Party Quiz Generator"
 metaDesc: "How to use pages in Next.js exploring the options"
-socialImage: fastQuiz.png
+socialImage: "wordCracker.png"
 date: "2021-09-22"
-link: "https://www.kparty.club/"
+link: "https://word-cracker.vercel.app/"
 tags:
   - nextjs
 ---
 
 ## Background
 
-The idea for this app was to make hosting an online quiz game fast and easy.
+This is a wordle clone.

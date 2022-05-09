@@ -1,11 +1,25 @@
 import fs from "fs"
 import matter from "gray-matter"
 import md from "markdown-it"
+import Image from "next/image"
+import { Text } from "@chakra-ui/react"
 
 const projectPage = ({ frontmatter, content }) => {
   return (
     <div>
-      <h1>{frontmatter.title}</h1>
+      <a href={frontmatter.link} target="_blank" rel="noreferrer">
+        <Text as="h1" color="#4183C4">
+          {frontmatter.title}
+        </Text>
+      </a>
+      <hr />
+      <p>{frontmatter?.brief}</p>
+      <Image
+        width={800}
+        height={448}
+        alt={frontmatter.title}
+        src={`/${frontmatter.socialImage}`}
+      />
       <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
     </div>
   )
