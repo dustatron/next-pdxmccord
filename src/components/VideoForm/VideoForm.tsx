@@ -1,21 +1,22 @@
-import React from "react"
-import Router from "next/router"
 import {
+  Button,
+  Checkbox,
   Flex,
   FormControl,
   FormLabel,
   Input,
-  Textarea,
-  Button,
-  Spacer,
-  Stack,
-  Checkbox,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  Spacer,
+  Stack,
+  Textarea,
 } from "@chakra-ui/react"
+
+import React from "react"
+import Router from "next/router"
 
 type Props = {
   submitData: (data: React.SyntheticEvent | string) => void
@@ -56,7 +57,7 @@ const VideoForm = ({
 }: Props) => {
   return (
     <form onSubmit={submitData}>
-      <Stack spacing={6}>
+      <Stack spacing={6} paddingBottom={10} width="3xl">
         <FormControl>
           <FormLabel>Title</FormLabel>
           <Input
@@ -124,10 +125,17 @@ const VideoForm = ({
           </FormControl>
         )}
         <Flex>
-          <Button onClick={() => Router.push("/")}> Cancel </Button>
-          {isEdit && (
-            <Button onClick={() => deleteVideo(videoId)}> Delete Video </Button>
-          )}
+          <Stack direction="row" spacing={3}>
+            <Button onClick={() => Router.push("/")} colorScheme="gray">
+              Cancel
+            </Button>
+            {isEdit && (
+              <Button onClick={() => deleteVideo(videoId)} colorScheme="red">
+                {" "}
+                Delete Video{" "}
+              </Button>
+            )}
+          </Stack>
           <Spacer />
           <Button colorScheme="blue" disabled={!link && !title} type="submit">
             {isEdit ? "Update" : "Add Video"}

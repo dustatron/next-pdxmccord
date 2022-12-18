@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react"
-import VideoForm from "../../components/VideoForm"
-import { Text } from "@chakra-ui/react"
+import React, { useEffect, useState } from "react"
+
 import { GetServerSideProps } from "next"
-import prisma from "../../lib/prisma"
 import Router from "next/router"
+import { Text } from "@chakra-ui/react"
+import VideoForm from "../../components/VideoForm"
+import prisma from "../../lib/prisma"
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const video = await prisma.video.findUnique({
@@ -74,9 +75,9 @@ const EditVideo = (props: Props) => {
       <Text
         as="h1"
         fontWeight={"black"}
-        fontSize={"2xl"}
+        fontSize={"xx-large"}
         paddingBottom={6}
-        paddingTop={10}
+        paddingTop={2}
       >
         Edit Video
       </Text>

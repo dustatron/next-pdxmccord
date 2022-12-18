@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from "react"
-import { GetServerSideProps } from "next"
-import prisma from "../../lib/prisma"
-import Router from "next/router"
-import { useSession } from "next-auth/react"
 import {
-  Button,
-  Text,
   Box,
-  TableContainer,
+  Button,
+  Stack,
   Table,
   TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Tfoot,
+  Th,
   Thead,
   Tr,
-  Td,
-  Th,
-  Tbody,
-  Tfoot,
 } from "@chakra-ui/react"
+import React, { useEffect, useState } from "react"
+
+import { GetServerSideProps } from "next"
 import ReactPlayer from "react-player"
+import Router from "next/router"
 import VideoPlayer from "../../components/VideoPlayer"
+import prisma from "../../lib/prisma"
+import { useSession } from "next-auth/react"
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const video = await prisma.video.findUnique({
@@ -56,20 +58,31 @@ const Video = (props) => {
 
   return (
     <Box>
-      <Text as="h2" fontWeight={"black"}>
+      <Text as="h2" fontWeight={"black"} fontSize="xx-large">
         {title}
       </Text>
-      <p>By {props?.author?.name || "Unknown author"}</p>
+      <Stack
+        direction="row"
+        textAlign="center"
+        justifyContent="space-between"
+        alignContent="center"
+      >
+        <p>By {props?.author?.name || "Unknown author"}</p>
+        {session?.user?.isAdmin && (
+          <Button
+            onClick={() => Router.push(`/editVideo/${props.id}`)}
+            marginTop={4}
+            colorScheme="yellow"
+          >
+            Edit
+          </Button>
+        )}
+      </Stack>
       {!isSSR && <ReactPlayer url={props.link} width="100%" />}
       {!props.published && userHasValidSession && postBelongsToUser && (
         <Button onClick={() => publishVideo(props.id)}>Publish</Button>
       )}
 
-      {session?.user?.isAdmin && (
-        <Button onClick={() => Router.push(`/editVideo/${props.id}`)}>
-          Edit
-        </Button>
-      )}
       <TableContainer>
         <Table variant="simple">
           <Thead>

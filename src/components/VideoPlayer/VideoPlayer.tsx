@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react"
-import { VideoProps } from "../../lib/Types"
-import Router from "next/router"
+import { Box, Button, Center, Flex } from "@chakra-ui/react"
+import React, { useEffect, useState } from "react"
+
 import ReactPlayer from "react-player"
-import { Button, Flex, Center } from "@chakra-ui/react"
+import Router from "next/router"
 import { SettingsIcon } from "@chakra-ui/icons"
+import { VideoProps } from "../../lib/Types"
+
 type Props = {
   videoData: VideoProps
   hideDetailBtn?: boolean
@@ -20,7 +22,6 @@ const VideoPlayer = ({ videoData, hideDetailBtn }: Props) => {
   return (
     <Flex
       borderRadius={4}
-      flexWrap="wrap"
       justifyContent="center"
       alignItems="center"
       height="33rem"
@@ -31,12 +32,14 @@ const VideoPlayer = ({ videoData, hideDetailBtn }: Props) => {
         </Center>
       )}
       {!hideDetailBtn && (
-        <Button
-          colorScheme="facebook"
-          onClick={() => Router.push(`/video/${id}`)}
-        >
-          <SettingsIcon w="6" h="6" />
-        </Button>
+        <Flex height="90%" alignItems="end" paddingLeft={1}>
+          <Button
+            colorScheme="gray"
+            onClick={() => Router.push(`/video/${id}`)}
+          >
+            <SettingsIcon w="2" h="2" />
+          </Button>
+        </Flex>
       )}
     </Flex>
   )
