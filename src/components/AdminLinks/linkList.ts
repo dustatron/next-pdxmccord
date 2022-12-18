@@ -26,7 +26,19 @@ export const links: Link[] = [
   {
     id: 4,
     link: "http://192.168.6.179:8080/",
-    title: "Downloadwer",
+    title: "Downloader",
+    img: "/sabnzb.png",
+  },
+  {
+    id: 4,
+    link: "http://octoprint.local:631/",
+    title: "Printer Server",
+    img: "/sabnzb.png",
+  },
+  {
+    id: 4,
+    link: "http://octoprint.local",
+    title: "OctoPrint",
     img: "/sabnzb.png",
   },
   {
